@@ -22,8 +22,9 @@ public class ResidentServiceUtil {
 
     public static void validateInputRequest(AppOTPRequestDTO requestDTO){
         List<String> incorrectNotificationChannel = new ArrayList<String>();
-        String notificationChannels = "email|PHONE";
-        logger.info(" Notification Types from application-default.properties in mosip-config - > " + notificationChannels);
+        String notificationChannels = notificationType;
+        logger.info("\n Notification Channel from application-default.properties in mosip-config - > " + notificationChannels);
+        logger.info("\n Notification Types from application-default.properties in mosip-config - > " + notificationType);
         incorrectNotificationChannel = requestDTO.getOtpChannel()
                 .stream()
                 .filter(otpChannel -> !notificationChannels.contains(otpChannel))

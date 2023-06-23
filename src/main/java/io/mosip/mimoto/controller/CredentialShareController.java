@@ -200,7 +200,7 @@ public class CredentialShareController {
                 credentialDownloadBody.setVerifiableCredential(credentialJSON);
 
                 // Remove cached data.
-                //utilities.removeCacheData(requestDTO.getRequestId());
+                utilities.removeCacheData(requestDTO.getRequestId());
                 return ResponseEntity.ok().body(credentialDownloadBody);
             }
 
