@@ -71,6 +71,9 @@ public class CredentialShareController {
     @Autowired
     public CryptoCoreUtil cryptoCoreUtil;
 
+    @Autowired
+    CredentialShareUtil credentialShareUtil;
+
     private Gson gson = new Gson();
 
     @Autowired
@@ -194,7 +197,7 @@ public class CredentialShareController {
 
             // Combine original encrypted verifiable credential and decrypted
             if (decryptedCredentialJSON != null && credentialJSON != null) {
-                CredentialShareUtil.validateCredentialDownloadRequest(requestDTO, requestedCredentialJSON);
+                credentialShareUtil.validateCredentialDownloadRequest(requestDTO, requestedCredentialJSON);
                 CredentialDownloadResponseDTO credentialDownloadBody = new CredentialDownloadResponseDTO();
                 credentialDownloadBody.setCredential(decryptedCredentialJSON);
                 credentialDownloadBody.setVerifiableCredential(credentialJSON);

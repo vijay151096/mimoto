@@ -1,6 +1,7 @@
 package io.mosip.mimoto.util;
 
 import io.mosip.mimoto.dto.mimoto.AppOTPRequestDTO;
+import io.mosip.mimoto.dto.mimoto.BindingOtpRequestDto;
 import io.mosip.mimoto.exception.InvalidInputException;
 import io.mosip.mimoto.exception.PlatformErrorMessages;
 import org.slf4j.Logger;
@@ -13,17 +14,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ResidentServiceUtil {
+public class IdpUtil {
 
-    private static Logger logger = LoggerFactory.getLogger(ResidentServiceUtil.class);
+    private static Logger logger = LoggerFactory.getLogger(IdpUtil.class);
 
     @Value("${mosip.notificationtype:EMAIL|PHONE}")
     private String notificationType;
-
-    public void validateNotificationChannel(AppOTPRequestDTO requestDTO){
+    public void validateNotificationChannel(BindingOtpRequestDto requestDTO){
         List<String> incorrectNotificationChannel = new ArrayList<String>();
         logger.info("\n Notification Types from application-default.properties in mosip-config - > " + notificationType);
-        incorrectNotificationChannel = requestDTO.getOtpChannel()
+        incorrectNotificationChannel = requestDTO.getRequest().getOtpChannels()
                 .stream()
                 .filter(otpChannel -> !notificationType.contains(otpChannel))
                 .collect(Collectors.toList());

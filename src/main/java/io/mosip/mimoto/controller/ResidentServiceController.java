@@ -33,6 +33,9 @@ public class ResidentServiceController {
     public RestClientService<Object> restClientService;
 
     @Autowired
+    ResidentServiceUtil residentServiceUtil;
+
+    @Autowired
     Environment env;
 
     /**
@@ -46,7 +49,7 @@ public class ResidentServiceController {
     @SuppressWarnings("unchecked")
     public ResponseEntity<Object> otpRequest(@Valid @RequestBody AppOTPRequestDTO requestDTO, BindingResult result) throws Exception {
         ValidationUtil.validateInputRequest(result);
-        ResidentServiceUtil.validateInputRequest(requestDTO);
+        residentServiceUtil.validateNotificationChannel(requestDTO);
         OTPRequestDTO mosipOTPRequestPayload = new OTPRequestDTO();
         mosipOTPRequestPayload.setVersion("1.0");
         mosipOTPRequestPayload.setId("mosip.identity.otp.internal");

@@ -10,11 +10,11 @@ import java.io.IOException;
 
 @Component
 public class CredentialShareUtil {
-    public static void validateCredentialDownloadRequest(CredentialDownloadRequestDTO requestDTO, JsonNode requestedCredentialJSON) throws IOException, NoSuchFieldException {
+    public void validateCredentialDownloadRequest(CredentialDownloadRequestDTO requestDTO, JsonNode requestedCredentialJSON) throws IOException, NoSuchFieldException {
         if(requestedCredentialJSON.has("response") && requestedCredentialJSON.get("response").has("id")) {
             String requestedIndividualId = requestedCredentialJSON.get("response").get("id").asText();
             if (!requestDTO.getIndividualId().equals(requestedIndividualId)) {
-                throw new InvalidInputException(PlatformErrorMessages.MIMOTO_PGS_INVALID_INPUT_PARAMETER.getMessage() + " - " + requestDTO.getClass().getDeclaredField("individualId").getName());
+                throw new InvalidInputException(PlatformErrorMessages.MIMOTO_PGS_INVALID_INPUT_PARAMETER.getMessage() + " - " + "individualId");
             }
         }
     }
