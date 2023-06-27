@@ -14,7 +14,7 @@ import java.util.Collections;
 @ControllerAdvice
 public class CommonExceptionHandler{
     @ExceptionHandler( value = InvalidInputException.class)
-    public ResponseEntity<CredentialRequestResponseDTO> resourceNotFoundException(InvalidInputException ex) {
+    public ResponseEntity<CredentialRequestResponseDTO> handleInvalidInput(InvalidInputException ex) {
         CredentialRequestResponseDTO credentialRequestResponseDTO = new CredentialRequestResponseDTO();
         ErrorDTO errors = new ErrorDTO(ex.getErrorCode(), ex.getMessage());
         credentialRequestResponseDTO.setVersion("1.0");
