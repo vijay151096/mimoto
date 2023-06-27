@@ -6,7 +6,7 @@ on:
     branches:
       - master
       - 1.*
-      - vijaymimoto/api-validation
+      - api-validation
       - develop
       - release*
 
